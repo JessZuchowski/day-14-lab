@@ -56,4 +56,25 @@ catalogForm.addEventListener('submit', handleSubmit);
 
 // Before anything else of value can happen, we need to fill in the select
 // drop down list in the form.
-populateForm();
+populateForm();{
+
+    //TODO: Add an <option> tag inside the form’s select for each product. COMPLETE.
+    var selectElement = document.getElementById("items");
+   
+    for (var i =0; i < Product.allProducts.length; i++) {
+      var option_el = document.createElement("option");
+      option_el.textContent = Product.allProducts[i].name;
+      selectElement.appendChild(option_el);
+    }
+   };
+
+/*var div = document.querySelector("#items"),
+   frag = document.createDocumentFragment(),
+   select = document.createElement("select");
+
+select.options.add( new Option("Method1","AU", true, true) );
+select.options.add( new Option("Method2","FI") );
+
+
+frag.appendChild(select);
+div.appendChild(frag); */

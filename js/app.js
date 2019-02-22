@@ -7,16 +7,24 @@ var Cart = function(items) {
 };
 
 Cart.prototype.addItem = function(product, quantity) {
-  // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+    // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+    this.product = product;
+    this.quantity = quantity;
 };
 
 Cart.prototype.saveToLocalStorage = function() {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  var stringy_items = JSON.stringify(allProducts);
+  localStorage.setItem('deck col-2', stringy_items);
+  console.log('Thank you for your purchase.');
+  
+
 };
 
-Cart.prototype.removeItem = function(item) {
+Cart.prototype.removeItem = function(remove_product) {
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
+    this.remove_product = remove_product;
 };
 
 var CartItem = function(product, quantity) {
@@ -33,6 +41,11 @@ var Product = function(filePath, name) {
 Product.allProducts = [];
 
 function generateCatalog() {
+    if (localStorage.getItem('deck col-2')) {
+        var stringy_items = localStorage.getItem('deck col-2');
+        allProducts = JSON.parse(stringy_items);
+        console.log(`retreived ${allProducts.length} from local storage`);
+    } else {
   new Product('assets/bag.jpg', 'Bag');
   new Product('assets/banana.jpg', 'Banana');
   new Product('assets/bathroom.jpg', 'Bathroom');
@@ -54,6 +67,7 @@ function generateCatalog() {
   new Product('assets/water-can.jpg', 'Water Can');
   new Product('assets/wine-glass.jpg', 'Wine Glass');
 }
+}
 
 // Initialize the app by creating the big list of products with images and names
-generateCatalog();
+generateCatalog(Product.allProducts[0]);
